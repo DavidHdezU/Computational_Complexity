@@ -1,2 +1,2 @@
-# Computational_Complexity
+# Computational Complexity
 Computational Complexity assignments and psets
