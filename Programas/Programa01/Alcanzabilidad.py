@@ -1,4 +1,3 @@
-from collections import deque, defaultdict, OrderedDict
 import random
 
 BOOLEAN_LIST = [True, False]
@@ -104,17 +103,3 @@ if __name__ == "__main__":
         print("El candidato propuesto sí es solución")
     else:
         print("El candidato propuesto no es solución")
-        
-            
-            
-                
-        
-        
-    
-    
-    
-    
-    
-                    
-                
-        

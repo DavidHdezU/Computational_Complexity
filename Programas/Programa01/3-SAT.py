@@ -1,12 +1,8 @@
 import random
-from collections import defaultdict
-import string
-from xmlrpc.client import Boolean
 
 BOOLEAN_LIST = [True, False]
 NUM_VAR = 10
 NUM_CLAUSULAS = 5
-
 
 
 class Variable(object):
@@ -38,7 +34,7 @@ class Clause(object):
         
         return "(" + str_builder + ")"
     
-    def get_valor(self) -> Boolean:
+    def get_valor(self) -> bool:
         evaluation = self.variables[0].valor
         
         for var in self.variables[1:]:
@@ -103,13 +99,4 @@ if __name__ == "__main__":
         print("\nEl candidato propuesto sí es solución")
     else:
         print("\nEl candidato propuesto no es solución")
-
-            
-            
-
-    
-    
-    
-    
-    
         
