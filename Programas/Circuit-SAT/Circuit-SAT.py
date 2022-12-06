@@ -18,7 +18,7 @@ class Node(object):
         if self.function == NOT:
             val = not self.neighbours[0].val
         elif self.function == AND:
-            val =self.neighbours[0].val & self.neighbours[1].val
+            val = self.neighbours[0].val & self.neighbours[1].val
         else:
             val = self.neighbours[0].val | self.neighbours[1].val
             
