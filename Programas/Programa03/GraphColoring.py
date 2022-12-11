@@ -9,11 +9,20 @@ class Vertex(object):
         self.id = id
         self.neighbours = []
         self.color = color
+        
+    def set_color(self, color):
+        """
+        Método que asigna un color a un vértice
+
+        Args:
+            color (int): Color a asignar
+        """
+        self.color = color
     
     def __str__(self) -> str:
         neighbours_ids = [v.id for v in self.neighbours]
         
-        if not self.color:            
+        if self.color is None:            
             return f"{self.id} : {neighbours_ids}"
         
         return f"{self.id} : {neighbours_ids}, color: {self.color}" 
@@ -84,9 +93,9 @@ def colore_graph(graph, k): # Fase adivinadora
     """
     colors = [i for i in range(k)]
     
-    for i in range(len(graph.vertices)):
+    for v in graph.vertices:
         color = random.choice(colors)
-        graph.vertices[i].color = color
+        v.set_color(color)
         
 def validate_coloring(graph): # Fase verificador
     """
@@ -116,6 +125,7 @@ if __name__ == "__main__":
     
     colore_graph(graph, k) # Coloreamos la gráfica
     print(f"Gráfica generada coloreada con {k} colores: \n\n{graph}\n")
+    
     
     res = validate_coloring(graph) # Validamos la gráfica
     
