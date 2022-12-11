@@ -39,7 +39,7 @@ class SubSetSumAprox():
         i, j = 0, 0
         
         while i < len(self.curr_solution) and j < len(new_L):
-            if self.curr_solution[i] < new_L[j]:
+            if self.curr_solution[i] <= new_L[j]:
                 res.append(self.curr_solution[i])
                 i += 1
             else:
@@ -47,11 +47,13 @@ class SubSetSumAprox():
                 j += 1
                 
         while i < len(self.curr_solution):
-            res.append(self.curr_solution[i])
+            if self.curr_solution[i] != res[-1]: # Evita repetidos
+                res.append(self.curr_solution[i])
             i += 1
             
         while j < len(new_L):
-            res.append(new_L[j])
+            if new_L[j] != res[-1]: # Evita repetidos
+                res.append(new_L[j])
             j += 1
             
         return res
@@ -86,20 +88,25 @@ class SubSetSumAprox():
         Returns:
             int: El resultado aproximado que regresa el algoritmo
         """
+        print(f"Solución inicial: {self.curr_solution}")
         for i in range(len(self.S)):
             LiPlusXi = self.__createLplusS(self.S[i])
             
             Li = self.__merge(LiPlusXi)
+            print(f"Merge: {Li}")
             Lj = self.__trim(Li)
+            print(f"Trim: {Lj}")
             
             self.curr_solution = Lj
             self.__removeElementesGreaterThanT()
+            print(f"Remove elements greater than t: {self.curr_solution}")
+            print()
             
         return self.curr_solution[-1]
     
     
 if __name__ == "__main__":
-    subSetSumAprox = SubSetSumAprox(S = [104, 102, 201, 101], t = 308, epsilon = 0.40)
-    print(f"Para el ejemplar\n S = {subSetSumAprox.S}\t t = {subSetSumAprox.t}\t epsilon = {subSetSumAprox.epsilon}")
+    subSetSumAprox = SubSetSumAprox(S = [120, 370, 400, 460, 500], t = 800, epsilon = 0.33)
+    print(f"Para el ejemplar\n S = {subSetSumAprox.S}\t t = {subSetSumAprox.t}\t epsilon = {subSetSumAprox.epsilon}\n")
     res = subSetSumAprox.sub_set_sum_Aprox()
-    print(f"El resultado aproximado obtenido es: {res}")
+    print(f"El resultado aproximado obtenido es: {res} y su costo es {subSetSumAprox.epsilon}")
